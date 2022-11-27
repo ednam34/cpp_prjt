@@ -25,6 +25,7 @@ grille::grille(std::vector<Tuile> tuiles)
     this->tuiles = tuiles;
 }
 
+
 grille::~grille()
 {
     //dtor
@@ -35,7 +36,9 @@ void grille::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     for(int i = 0; i < tuiles.size(); i++)
     {
+        
         target.draw(tuiles[i]);
+        tuiles[i].drawText(target,states,i);
     }
 }
 
@@ -50,12 +53,12 @@ Tuile grille::getTuile(int x, int y)
                 std::cout << "tuile found" << std::endl;
                 std::cout << i << std::endl;
                 tuiles[i].changeColor();
-                std::this_thread::sleep_for(std::chrono::milliseconds(200));
+                //std::this_thread::sleep_for(std::chrono::milliseconds(200));
                 return tuiles[i];
                 
             }
         }
     }
-    //return null;
+    return tuiles[0];
     
 }

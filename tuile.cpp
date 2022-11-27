@@ -25,8 +25,27 @@ Tuile::~Tuile()
 
 void Tuile::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+   
     target.draw(rect);
     //set the color of the tuile
+    //add text to the tuile
+    //target.draw(text);
+
+    
+}
+
+void Tuile::drawText(sf::RenderTarget& target, sf::RenderStates states,int a) const
+{
+    //add text to the tuile
+    sf::Text text;
+    sf::Font font;
+    font.loadFromFile("font/arial.ttf");
+    text.setFont(font);
+    text.setString(std::to_string(a));
+    text.setCharacterSize(24);
+    text.setFillColor(sf::Color::White);
+    text.setPosition(x,y);
+    target.draw(text);
     
 }
 

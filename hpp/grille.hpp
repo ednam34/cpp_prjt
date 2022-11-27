@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "tuile.hpp"
+#include "domino.hpp"
 
 class grille : public sf::Drawable
 {
