@@ -25,13 +25,7 @@ Tuile::~Tuile()
 
 void Tuile::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-   
     target.draw(rect);
-    //set the color of the tuile
-    //add text to the tuile
-    //target.draw(text);
-
-    
 }
 
 void Tuile::drawText(sf::RenderTarget& target, sf::RenderStates states,int a) const

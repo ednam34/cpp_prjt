@@ -1,5 +1,8 @@
 all: main.o tuile.o grille.o
-	g++ main.o tuile.o grille.o -o main -lsfml-graphics -lsfml-window -lsfml-system
+	g++ main.o domino.o tuile.o grille.o -o main -lsfml-graphics -lsfml-window -lsfml-system
+
+domino.o: domino.cpp
+	g++ -c domino.cpp
 
 main.o: main.cpp
 	g++ -c main.cpp

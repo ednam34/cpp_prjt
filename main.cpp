@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <chrono>
 #include <thread>
+#include "hpp/domino.hpp"
 
 
 int main()
@@ -26,8 +27,20 @@ int main()
                 tuiles.push_back(Tuile(i*70+8,j*70+8,0));
             }
         }
+
+        //create a vector of domino
+        std::vector<Tuile> dominos;
+        for(int i = 0; i < 7; i++)
+        {
+            for(int j = 0; j < 7; j++)
+            {
+                dominos.push_back(Domino(i*70+8,j*70+8,0,{0,0,0},{0,0,0},{0,0,0},{0,0,0}));
+            }
+        }
+
+
         //create a grille with the vector of tuiles
-        grille g(tuiles);
+        grille g(dominos);
 
         while (window.isOpen())
         {

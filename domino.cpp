@@ -33,17 +33,4 @@ void Domino::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(rect);
     //draw the vector a on the left side
-    for(int i = 0; i < a.size(); i++)
-    {
-        sf::Text text;
-        sf::Font font;
-        font.loadFromFile("font/arial.ttf");
-        text.setFont(font);
-        text.setString(std::to_string(a[i]));
-        text.setCharacterSize(24);
-        text.setFillColor(sf::Color::White);
-        text.setPosition(x,y);
-        target.draw(text);
-    }
-
 }
