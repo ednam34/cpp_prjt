@@ -18,11 +18,13 @@ class Tuile : public sf::Drawable
         void changeColor();
         void setX(int x);
         void setY(int y);
+        void setType(int t);
         int getX();
         int getY();
         int getType();
-        void setType(int t);
-    private:
+        sf::RectangleShape getRect();
+        
+    protected:
         int x;
         int y;
         int type;

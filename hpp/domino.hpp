@@ -18,10 +18,6 @@ class Domino : public Tuile
         std::vector<int> b;
         std::vector<int> c;
         std::vector<int> d;
-        int x;
-        int y;
-        int type;
-        sf::RectangleShape rect;
 };
 
 #endif

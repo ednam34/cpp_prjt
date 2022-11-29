@@ -26,6 +26,7 @@ Tuile::~Tuile()
 void Tuile::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(rect);
+   
 }
 
 void Tuile::drawText(sf::RenderTarget& target, sf::RenderStates states,int a) const
@@ -84,6 +85,11 @@ int Tuile::getType()
 void Tuile::setType(int type)
 {
     this->type = type;
+}
+
+sf::RectangleShape Tuile::getRect()
+{
+    return rect;
 }
 
 

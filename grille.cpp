@@ -20,9 +20,16 @@ grille::grille()
     }
 }
 
-grille::grille(std::vector<Tuile> tuiles)
+grille::grille(std::vector<Tuile> tuiles, int gameType)
 {
     this->tuiles = tuiles;
+    this->gameType = gameType;
+}
+
+grille::grille(std::vector<Domino> dominos, int gameType)
+{
+    this->setTuiles(dominos);
+    this->gameType = gameType;
 }
 
 
@@ -38,8 +45,25 @@ void grille::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         
         target.draw(tuiles[i]);
-        tuiles[i].drawText(target,states,i);
+    
+        //draw the tuiles casted as domino
+
+
+        target.draw(tuiles[i]);
+
+        //tuiles[i].drawText(target,states,i);
     }
+}
+
+//settuiles
+void grille::setTuiles(std::vector<Domino> dominos)
+{
+    std::vector<Tuile> temp;
+    for(int i = 0; i < dominos.size(); i++)
+    {
+        temp.push_back(dominos[i]);
+    }
+    this->tuiles = temp;
 }
 
 Tuile grille::getTuile(int x, int y)
@@ -59,6 +83,5 @@ Tuile grille::getTuile(int x, int y)
             }
         }
     }
-    return tuiles[0];
-    
+    return tuiles[0];   
 }

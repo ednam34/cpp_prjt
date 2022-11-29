@@ -19,9 +19,9 @@ Domino::Domino(int x, int y, int type, std::vector<int> a, std::vector<int> b, s
     this->b = b;
     this->c = c;
     this->d = d;
-    rect.setSize(sf::Vector2f(65,65));
-    rect.setPosition(x,y);
-    rect.setFillColor(sf::Color::Red);
+    this->rect.setPosition(x,y);
+    this->rect.setSize(sf::Vector2f(65,65));
+    this->rect.setFillColor(sf::Color::Red);
 }
 
 Domino::~Domino()
@@ -30,7 +30,16 @@ Domino::~Domino()
 }
 
 void Domino::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
+{    
     target.draw(rect);
+    sf::Text text;
+    sf::Font font;
+    font.loadFromFile("font/arial.ttf");
+    text.setFont(font);
+    text.setString(std::to_string(34));
+    text.setCharacterSize(24);
+    text.setFillColor(sf::Color::White);
+    text.setPosition(x,y);
+    target.draw(text);
     //draw the vector a on the left side
 }

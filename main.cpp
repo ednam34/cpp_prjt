@@ -29,7 +29,7 @@ int main()
         }
 
         //create a vector of domino
-        std::vector<Tuile> dominos;
+        std::vector<Domino> dominos;
         for(int i = 0; i < 7; i++)
         {
             for(int j = 0; j < 7; j++)
@@ -40,7 +40,7 @@ int main()
 
 
         //create a grille with the vector of tuiles
-        grille g(dominos);
+        grille g(dominos,1);
 
         while (window.isOpen())
         {

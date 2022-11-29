@@ -1,4 +1,4 @@
-all: main.o tuile.o grille.o
+all: main.o tuile.o grille.o domino.o
 	g++ main.o domino.o tuile.o grille.o -o main -lsfml-graphics -lsfml-window -lsfml-system
 
 domino.o: domino.cpp
