@@ -13,7 +13,7 @@ class Tuile : public sf::Drawable
         Tuile();
         Tuile(int x, int y, int type);
         virtual ~Tuile();
-        void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
         void drawText(sf::RenderTarget& target, sf::RenderStates states, int a) const;
         void changeColor();
         void setX(int x);
