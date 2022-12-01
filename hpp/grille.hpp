@@ -6,6 +6,7 @@
 #include <vector>
 #include "tuile.hpp"
 
+
 class Grille{
 
     public:
@@ -21,7 +22,6 @@ class Grille{
         //Tuile* tuiles[height][width];
         //std::vector<Tuile *> tuiles;
 };
-
 
 
 #endif

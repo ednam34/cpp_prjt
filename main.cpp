@@ -17,7 +17,14 @@ int main()
         dominos.push_back(domino);
     }
 
+    int x = rand() % 7;
+    int y = rand() % 7;
+    Domino domino(x, y, 3);
+
     DominoGrid dg(10, 10);
-    dg.setTuiles(dominos);
+    dg.setGrille();
     dg.afficher();
+    dg.setTuileOnGrid(0, 0, domino);
+    dg.afficher();
+    dg.generateBorders();
 }

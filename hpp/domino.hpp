@@ -6,6 +6,21 @@
 #include <vector>
 #include "tuile.hpp"
 
+class Border{
+    public:
+        Border();
+        Border(int a, int b, int c);
+        void update(int a, int b, int c);
+        int getA();
+        int getB();
+        int getC();
+        void afficher();
+    protected:
+        int a;
+        int b;
+        int c;    
+};
+
 class Domino: public Tuile{
 
     public:
@@ -17,12 +32,13 @@ class Domino: public Tuile{
         int getX();
         int getY();
         int getID();
-        void setBorders(int n[4], int s[4], int e[4], int w[4]);
+        void setBorders(Border n, Border e, Border s, Border w);
     protected:
-        int n[3];
-        int s[3];
-        int e[3];
-        int o[3];
+        Border n;
+        Border s;
+        Border e;
+        Border w;
+        
 
 
 

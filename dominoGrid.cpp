@@ -1,5 +1,5 @@
 #include "hpp/dominoGrid.hpp"
-
+#include <cstdlib>
 
 
 DominoGrid::DominoGrid(){
@@ -31,6 +31,33 @@ int DominoGrid::getWidth(){
     return width;
 }
 
+void DominoGrid::generateBorders(){
+    //generate 10 random borders and put them in a vector
+    for(int i = 0; i < 10; i++){
+        int x = rand() % 7;
+        int y = rand() % 7;
+        int z = rand() % 7;
+        Border border(x,y,z);
+        borders.push_back(border);
+        border.afficher();
+    }
+}
+
+void DominoGrid::setGrille(){
+    //create a 10x10 grid of domino with -1 as id
+    //Domino domino(0, 1, -1);
+    int i = 0;
+    int j = 0;
+    for(int k = 0; k < 100; k++){
+        this->tuiles[i][j] = new Domino(i,j, -1);
+        j++;
+        if(j == width){
+            j = 0;
+            i++;
+        }
+    }
+}
+
 void DominoGrid::setTuiles(std::vector<Domino> dominos){
     //take the vector of tuiles and put them in the 2d tuiles array
     int i = 0;
@@ -43,6 +70,11 @@ void DominoGrid::setTuiles(std::vector<Domino> dominos){
             i++;
         }
     }
+}
+
+void DominoGrid::setTuileOnGrid(int x, int y, Domino domino){
+    //put a domino on the grid
+    this->tuiles[x][y] = &domino;
 }
 
 void DominoGrid::afficher(){

@@ -3,6 +3,36 @@
 #include "hpp/tuile.hpp"
 
 
+Border::Border(){
+    a = 0;
+    b = 0;
+    c = 0;
+}
+Border::Border(int a, int b, int c){
+    this->a = a;
+    this->b = b;
+    this->c = c;
+}
+void Border::update(int a, int b, int c){
+    this->a = a;
+    this->b = b;
+    this->c = c;
+}
+int Border::getA(){
+    return a;
+}
+int Border::getB(){
+    return b;
+}
+int Border::getC(){
+    return c;
+}
+
+void Border::afficher(){
+    std::cout << a << " " << b << " " << c << std::endl;
+}
+
+
 Domino::Domino(){
     this->x = 0;
     this->y = 0;
@@ -17,13 +47,11 @@ Domino::Domino(int x, int y, int id){
 }
 
 
-void Domino::setBorders(int n[4], int s[4], int e[4], int w[4]){
-    for(int i = 0; i < 3; i++){
-        this->n[i] = n[i];
-        this->s[i] = s[i];
-        this->e[i] = e[i];
-        this->o[i] = w[i];
-    }
+void Domino::setBorders(Border n, Border e, Border s, Border w){
+    this->n = n;
+    this->e = e;
+    this->s = s;
+    this->w = w;
 }
 
 
