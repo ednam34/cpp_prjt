@@ -14,6 +14,7 @@ class Border{
         int getA();
         int getB();
         int getC();
+        bool isEquals(Border b);
         void afficher();
     protected:
         int a;
@@ -32,7 +33,12 @@ class Domino: public Tuile{
         int getX();
         int getY();
         int getID();
+        Border getN();
+        Border getE();
+        Border getS();
+        Border getW();
         void setBorders(Border n, Border e, Border s, Border w);
+        void printBorders();
     protected:
         Border n;
         Border s;

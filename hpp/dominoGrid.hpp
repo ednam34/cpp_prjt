@@ -15,15 +15,20 @@ class DominoGrid: public Grille{
         void setWidth(int width);
         int getHeight();
         int getWidth();
+        Domino getTuile(int i, int j);
         void generateBorders();
+        void setDominoBorders();
         void setGrille();
         void setTuiles(std::vector<Domino> dominos);
+        bool putDomino(int x, int y, Domino domino);
         void setTuileOnGrid(int x, int y, Domino domino);
         void afficher();
+       //Domino* tuiles[7][7];
 
     protected:
         std::vector<Border> borders;
-        Tuile* tuiles[10][10];
+        std::vector<std::vector<Domino>> tuiles;
+        //Domino* tuiles[7][7];
 };
 
 

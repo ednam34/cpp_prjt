@@ -5,6 +5,7 @@
 #include <array>
 #include <iostream>
 #include <array>
+#include "../../hpp/domino.hpp"
 
 class Card : public sf::Drawable
 {
@@ -13,6 +14,7 @@ public:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     Card();
     Card(int top, int right, int bottom, int x, int y);
+    Card(Domino domino, int x, int y);
     //~Card();
     int CARD_SIZE = 65;
 protected:
