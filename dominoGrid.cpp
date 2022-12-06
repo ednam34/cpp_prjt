@@ -54,28 +54,38 @@ void DominoGrid::setDominoBorders(){
             int w = rand() % 10;
             Domino dom = this->tuiles[i][j];
             dom.setBorders(borders[x], borders[y], borders[z], borders[w]);
+            dom.printBorders();
         }
     }
-    //this->tuiles[4][4]->printBorders();
+    std::cout << "domino borders set" << std::endl;
+    getTuile(4,4).printBorders();
 }
     
 
 void DominoGrid::setGrille(){
     //create a 10x10 grid of domino with -1 as id
     //Domino domino(0, 1, -1);
-
+    this->generateBorders();
     
     for(int i=0; i < height; i++){
         std::vector<Domino> row;
         for(int j=0; j < width; j++){
+            int x = rand() % 10;
+            int y = rand() % 10;
+            int z = rand() % 10;
+            int w = rand() % 10;
+           
             Domino domino(0, 1, 0);
+
+            domino.setBorders(borders[x], borders[y], borders[z], borders[w]);
+
             row.push_back(domino);
         }
         tuiles.push_back(row);
     }
 }
 
-void DominoGrid::setTuiles(std::vector<Domino> dominos){
+void DominoGrid::setTuiles(std::vector<Domino>& dominos){
     //take the vector of tuiles and put them in the 2d tuiles array
     int i = 0;
     int j = 0;
@@ -85,12 +95,10 @@ void DominoGrid::setTuiles(std::vector<Domino> dominos){
 }
 
 Domino DominoGrid::getTuile(int x, int y){
-    std::cout << x <<" helo "<<y<< std::endl;
-    tuiles[0][0].printBorders();
     return tuiles[x][y];
 }
 
-bool DominoGrid::putDomino(int x, int y, Domino domino){
+bool DominoGrid::putDomino(int x, int y, Domino& domino){
     //put a domino on the grid
     
     if(getTuile(x,y).getID() == 0 && getTuile(x+1,y).getID() == 0 && getTuile(x-1,y).getID() == 0 && getTuile(x,y+1).getID() == 0 && getTuile(x,y-1).getID() == 0){

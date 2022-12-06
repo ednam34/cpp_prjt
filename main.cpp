@@ -16,7 +16,6 @@ void test(DominoGrid& dg)
     // Create a card with numbers 3, 4, 5, and 6
     //Card card(4, 5, 6, 40,40);
     CardGrid grid(1, 1, dg);
-
    
 
     while (window.isOpen())
@@ -34,7 +33,6 @@ void test(DominoGrid& dg)
 
         // Draw the card on the screen
         //window.draw(card);
-        
         grid.myDraw(window, sf::RenderStates::Default);
         //window.draw(text);
         window.display();

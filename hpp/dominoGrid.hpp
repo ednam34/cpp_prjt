@@ -19,8 +19,8 @@ class DominoGrid: public Grille{
         void generateBorders();
         void setDominoBorders();
         void setGrille();
-        void setTuiles(std::vector<Domino> dominos);
-        bool putDomino(int x, int y, Domino domino);
+        void setTuiles(std::vector<Domino>& dominos);
+        bool putDomino(int x, int y, Domino& domino);
         void setTuileOnGrid(int x, int y, Domino domino);
         void afficher();
        //Domino* tuiles[7][7];

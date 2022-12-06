@@ -28,7 +28,8 @@ CardGrid::CardGrid(int rows, int cols, DominoGrid& dominoGrid){
         }*/
         cards.push_back(Card(1, 2, 3, 50, 50));
         cardTest = Card(1, 2, 3, 50, 50);
-        dominoGrid = dominoGrid;
+        this->dominoGrid = dominoGrid;
+        this->dominoGrid.afficher();
     }
 
 Card CardGrid::getCard(int i)
@@ -83,8 +84,8 @@ void CardGrid::myDraw (sf::RenderTarget& target, sf::RenderStates states)
             for (int j = 0; j < 7; j++)
             {
                 //std::cout << "Hello World!" << std::endl;
-                dominoGrid.afficher();
-                //target.draw(Card(dominoGrid.getTuiles()[i][j], 72*j, 72*i));
+                //dominoGrid.afficher();
+                target.draw(Card(dominoGrid.getTuile(i,j), 72*j, 72*i));
             }
         }
 }
