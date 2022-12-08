@@ -67,6 +67,7 @@ int main()
     std::cout << "hello There2" << std::endl;
     dg.afficher();
     dg.setTuileOnGrid(4, 4, domino);
+    dg.setTuileOnGrid(4, 3, domino);
     std::cout << "-------------------" << std::endl;
     dg.afficher();
     //dg.setTuileOnGrid(4, 4, domino);

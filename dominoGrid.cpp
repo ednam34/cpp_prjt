@@ -54,7 +54,7 @@ void DominoGrid::setDominoBorders(){
             int w = rand() % 10;
             Domino dom = this->tuiles[i][j];
             dom.setBorders(borders[x], borders[y], borders[z], borders[w]);
-            dom.printBorders();
+            //dom.printBorders();
         }
     }
     std::cout << "domino borders set" << std::endl;
@@ -106,12 +106,6 @@ bool DominoGrid::putDomino(int x, int y, Domino& domino){
         return true;
     }
     else{
-        /*if(this->tuiles[x+1][y]->getN().isEquals(domino.getS()) || this->tuiles[x-1][y]->getS().isEquals(domino.getN()) || this->tuiles[x][y+1]->getW().isEquals(domino.getE()) || this->tuiles[x][y-1]->getE().isEquals(domino.getW())){
-            this->tuiles[x][y] = &domino;
-            return true;
-        }else {
-            return false;
-        }*/
         bool find = true;
         if(!getTuile(x+1,y).getN().isEquals(domino.getS())){
             find = false;
@@ -134,13 +128,14 @@ bool DominoGrid::putDomino(int x, int y, Domino& domino){
 }
 
 void DominoGrid::setTuileOnGrid(int x, int y, Domino domino){
+    this->tuiles[x][y] = domino;
     if(x > height || y > width){
         std::cout << "Error: out of bounds" << std::endl;
     }
     if(this->putDomino(x, y, domino) == false){
         std::cout << "Error: can't put domino on grid" << std::endl;
     }else{
-        this->tuiles[x][y] = domino;
+        //this->tuiles[x][y] = domino;
     }
     
 }

@@ -175,52 +175,55 @@ Card::Card(Domino domino, int x, int y){
         rect.setPosition(x, y);
 
         // Create the text objects for the numbers
-        for (int i = 0; i < 3; i++)
-        {
-            /*texts[i].setFont(font);
-            texts[i].setString(std::to_string(numbers[i]));
-            texts[i].setCharacterSize(20);
-            texts[i].setFillColor(sf::Color::Black);*/
-            textN[i].setFont(font);
-            textN[i].setString(std::to_string(numbersN[i]));
-            textN[i].setCharacterSize(10);
-            textN[i].setFillColor(sf::Color::Black);
+        if(!domino.getID()==0){
+            for (int i = 0; i < 3; i++)
+            {
+                /*texts[i].setFont(font);
+                texts[i].setString(std::to_string(numbers[i]));
+                texts[i].setCharacterSize(20);
+                texts[i].setFillColor(sf::Color::Black);*/
+                textN[i].setFont(font);
+                textN[i].setString(std::to_string(numbersN[i]));
+                textN[i].setCharacterSize(10);
+                textN[i].setFillColor(sf::Color::Black);
 
-            textS[i].setFont(font);
-            textS[i].setString(std::to_string(numbersS[i]));
-            textS[i].setCharacterSize(10);
-            textS[i].setFillColor(sf::Color::Black);
+                textS[i].setFont(font);
+                textS[i].setString(std::to_string(numbersS[i]));
+                textS[i].setCharacterSize(10);
+                textS[i].setFillColor(sf::Color::Black);
 
-            textE[i].setFont(font);
-            textE[i].setString(std::to_string(numbersE[i]));
-            textE[i].setCharacterSize(10);
-            textE[i].setFillColor(sf::Color::Black);
+                textE[i].setFont(font);
+                textE[i].setString(std::to_string(numbersE[i]));
+                textE[i].setCharacterSize(10);
+                textE[i].setFillColor(sf::Color::Black);
 
-            textW[i].setFont(font);
-            textW[i].setString(std::to_string(numbersW[i]));
-            textW[i].setCharacterSize(10);
-            textW[i].setFillColor(sf::Color::Black);
+                textW[i].setFont(font);
+                textW[i].setString(std::to_string(numbersW[i]));
+                textW[i].setCharacterSize(10);
+                textW[i].setFillColor(sf::Color::Black);
 
-        }
+            }
 
         // Set the position of the numbers on the card
 
-        textN[2].setPosition((CARD_SIZE / 1.5 - textN[2].getGlobalBounds().width / 1.5)+x, 10+y);
-        textN[1].setPosition((CARD_SIZE / 2 -   textN[1].getGlobalBounds().width / 2)+x, 10+y);
-        textN[0].setPosition((CARD_SIZE / 3 -   textN[0].getGlobalBounds().width / 3)+x, 10+y);
+            textN[2].setPosition((CARD_SIZE / 1.5 - textN[2].getGlobalBounds().width / 1.5)+x, 10+y);
+            textN[1].setPosition((CARD_SIZE / 2 -   textN[1].getGlobalBounds().width / 2)+x, 10+y);
+            textN[0].setPosition((CARD_SIZE / 3 -   textN[0].getGlobalBounds().width / 3)+x, 10+y);
 
-        textS[2].setPosition((CARD_SIZE - textS[2].getGlobalBounds().width - 10)+x, (CARD_SIZE / 1.5 - textS[2].getGlobalBounds().height / 1.5)+y);
-        textS[1].setPosition((CARD_SIZE - textS[1].getGlobalBounds().width - 10)+x, (CARD_SIZE / 2 - textS[1].getGlobalBounds().height / 2)+y);
-        textS[0].setPosition((CARD_SIZE - textS[0].getGlobalBounds().width - 10)+x, (CARD_SIZE / 3 - textS[0].getGlobalBounds().height / 3)+y);
+            textS[2].setPosition((CARD_SIZE - textS[2].getGlobalBounds().width - 10)+x, (CARD_SIZE / 1.5 - textS[2].getGlobalBounds().height / 1.5)+y);
+            textS[1].setPosition((CARD_SIZE - textS[1].getGlobalBounds().width - 10)+x, (CARD_SIZE / 2 - textS[1].getGlobalBounds().height / 2)+y);
+            textS[0].setPosition((CARD_SIZE - textS[0].getGlobalBounds().width - 10)+x, (CARD_SIZE / 3 - textS[0].getGlobalBounds().height / 3)+y);
 
-        textE[2].setPosition((CARD_SIZE / 1.5 - textE[2].getGlobalBounds().width / 1.5)+x, (CARD_SIZE - textE[2].getGlobalBounds().height - 10)+y);
-        textE[1].setPosition((CARD_SIZE / 2 - textE[1].getGlobalBounds().width / 2)+x, (CARD_SIZE - textE[1].getGlobalBounds().height - 10)+y);
-        textE[0].setPosition((CARD_SIZE / 3 - textE[0].getGlobalBounds().width / 3)+x, (CARD_SIZE - textE[0].getGlobalBounds().height - 10)+y);
+            textE[2].setPosition((CARD_SIZE / 1.5 - textE[2].getGlobalBounds().width / 1.5)+x, (CARD_SIZE - textE[2].getGlobalBounds().height - 10)+y);
+            textE[1].setPosition((CARD_SIZE / 2 - textE[1].getGlobalBounds().width / 2)+x, (CARD_SIZE - textE[1].getGlobalBounds().height - 10)+y);
+            textE[0].setPosition((CARD_SIZE / 3 - textE[0].getGlobalBounds().width / 3)+x, (CARD_SIZE - textE[0].getGlobalBounds().height - 10)+y);
 
 
-        textW[2].setPosition(10+x, (CARD_SIZE / 1.5 - textW[2].getGlobalBounds().height / 1.5)+y);
-        textW[1].setPosition(10+x, (CARD_SIZE / 2 - textW[1].getGlobalBounds().height / 2)+y);
-        textW[0].setPosition(10+x, (CARD_SIZE / 3 - textW[0].getGlobalBounds().height / 3)+y);
+            textW[2].setPosition(10+x, (CARD_SIZE / 1.5 - textW[2].getGlobalBounds().height / 1.5)+y);
+            textW[1].setPosition(10+x, (CARD_SIZE / 2 - textW[1].getGlobalBounds().height / 2)+y);
+            textW[0].setPosition(10+x, (CARD_SIZE / 3 - textW[0].getGlobalBounds().height / 3)+y);
+        }
+        
 
     }
 
