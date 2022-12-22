@@ -23,6 +23,8 @@ int DominoGrid::getHeight() { return height; }
 
 int DominoGrid::getWidth() { return width; }
 
+Domino DominoGrid::getNextDomino() { return nextDom; }
+
 void DominoGrid::generateBorders() {
     srand((unsigned)time(NULL));
     // generate 10 random borders and put them in a vector
@@ -36,18 +38,31 @@ void DominoGrid::generateBorders() {
     }
 }
 
+void DominoGrid::generateNextDomino(){
+    int x = rand() % 10;
+    int y = rand() % 10;
+    int z = rand() % 10;
+    int w = rand() % 10;
+    Domino domino(0, 0, 20);
+    domino.setBorders(borders[x], borders[y], borders[z], borders[w]);
+    this->nextDom = domino;
+}
+
+
 void DominoGrid::setDominoBorders() {
     // for each domino in Domino* tuiles[10][10] set random borders from the
     // vector borders
+    int count = 1;
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             int x = rand() % 10;
             int y = rand() % 10;
             int z = rand() % 10;
-            int w = rand() % 10;
-            Domino dom = this->tuiles[i][j];
-            dom.setBorders(borders[x], borders[y], borders[z], borders[w]);
+            int w = rand() % 10;           
             // dom.printBorders();
+            this->tuiles[i][j].setBorders(borders[x], borders[y], borders[z],borders[w]);
+            this->tuiles[i][j].setID(count);
+            count++;
         }
     }
     std::cout << "domino borders set" << std::endl;
@@ -62,14 +77,11 @@ void DominoGrid::setGrille() {
     for (int i = 0; i < height; i++) {
         std::vector<Domino> row;
         for (int j = 0; j < width; j++) {
-            int x = rand() % 10;
-            int y = rand() % 10;
-            int z = rand() % 10;
-            int w = rand() % 10;
 
+            Border border(0, 0, 0);
             Domino domino(0, 1, 0);
 
-            domino.setBorders(borders[x], borders[y], borders[z], borders[w]);
+            domino.setBorders(border, border, border, border);
 
             row.push_back(domino);
         }

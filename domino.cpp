@@ -5,7 +5,7 @@
 
 Border::Border(){
     a = 0;
-    b = 3;
+    b = 0;
     c = 0;
 }
 Border::Border(int a, int b, int c){

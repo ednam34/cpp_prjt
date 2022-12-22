@@ -191,7 +191,7 @@ Card::Card(Domino domino, int x, int y) {
     rect.setPosition(x, y);
 
     // Create the text objects for the numbers
-    if (true) {  // !domino.getID()==0
+    if (!domino.getID()==0) {  // 
         for (int i = 0; i < 3; i++) {
             /*texts[i].setFont(font);
             texts[i].setString(std::to_string(numbers[i]));

@@ -38,17 +38,12 @@ void test(DominoGrid& dg) {
 int main() {
     // create 10x10 random domino and put them in a vector
     srand((unsigned)time(NULL));
-    std::vector<Domino> dominos;
-    for (int i = 0; i < 70; i++) {
-        int x = rand() % 7;
-        int y = rand() % 7;
-        Domino domino(x, y, i);
-        dominos.push_back(domino);
-    }
-
+    
     int x = rand() % 7;
     int y = rand() % 7;
     Domino domino(x, y, 3);
+    Border border(1, 2, 3);
+    domino.setBorders(border, border, border, border);
 
     DominoGrid dg(7, 7);
     std::cout << "hello There" << std::endl;
@@ -57,12 +52,14 @@ int main() {
     dg.afficher();
     // Create a random domino from dg values
 
-    dg.setTuileOnGrid(4, 4, domino);
-    dg.setTuileOnGrid(4, 3, domino);
     std::cout << "-------------------" << std::endl;
     dg.afficher();
     // dg.setTuileOnGrid(4, 4, domino);
     dg.generateBorders();
-    dg.setDominoBorders();
+    //dg.setDominoBorders();
+
+    dg.setTuileOnGrid(4, 4, domino);
+    dg.setTuileOnGrid(4, 3, domino);
+    dg.generateNextDomino();
     test(dg);
 }

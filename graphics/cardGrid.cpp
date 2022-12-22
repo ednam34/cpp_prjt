@@ -81,7 +81,7 @@ void CardGrid::myDraw(sf::RenderTarget& target, sf::RenderStates states) {
 void CardGrid::UpdateNextCard(sf::RenderTarget& target,
                               sf::RenderStates states) {
     // Draw top right corner of the window a white circle
-    target.draw(Card(dominoGrid.getTuile(4, 3), 600, 30));
+    target.draw(Card(dominoGrid.getNextDomino(), 600, 30));
     // write under the domino "Player One"
     sf::Font font;
     if (!font.loadFromFile("arial.ttf")) {
