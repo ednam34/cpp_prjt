@@ -1,5 +1,5 @@
-all: main.o card.o cardGrid.o dominoGrid.o domino.o tuile.o grille.o
-	g++ tuile.o grille.o domino.o dominoGrid.o card.o cardGrid.o main.o -o main -lsfml-graphics -lsfml-window -lsfml-system
+all: main.o mainScreen.o card.o cardGrid.o dominoGrid.o domino.o tuile.o grille.o
+	g++ tuile.o grille.o domino.o dominoGrid.o card.o cardGrid.o mainScreen.o main.o -o main -lsfml-graphics -lsfml-window -lsfml-system
 
 dominoGridWindow.o: graphics/dominoGridWindow.cpp hpp/dominoGridWindow.hpp
 	g++ -c graphics/dominoGridWindow.cpp
@@ -25,7 +25,10 @@ cardGrid.o: graphics/cardGrid.cpp graphics/hpp/cardGrid.hpp
 test.o: graphics/test.cpp
 	g++ -c graphics/test.cpp
 
-main.o: main.cpp hpp/grille.hpp hpp/tuile.hpp
+mainScreen.o : mainScreen.cpp hpp/mainScreen.hpp
+	g++ -c mainScreen.cpp
+
+main.o: main.cpp hpp/grille.hpp hpp/tuile.hpp hpp/mainScreen.hpp
 	g++ -c main.cpp
 
 
