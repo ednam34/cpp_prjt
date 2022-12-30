@@ -21,14 +21,12 @@ CardGrid::CardGrid() {
 }
 
 CardGrid::CardGrid(int rows, int cols, DominoGrid& dominoGrid) {
-    /*for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < cols; j++)
-        {
-            cards.push_back(Card(1, 2, 3, 50, 50));
+    //put all the cards in the vector
+    for (int i = 0; i < 7; i++) {
+        for (int j = 0; j < 7; j++) {
+            cards.push_back(Card(dominoGrid.getTuile(i, j), 72 * i, 72 * j));
         }
-    }*/
-    cards.push_back(Card(1, 2, 3, 50, 50));
+    }
     cardTest = Card(1, 2, 3, 50, 50);
     this->dominoGrid = dominoGrid;
     this->dominoGrid.afficher();
@@ -66,15 +64,12 @@ void CardGrid::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 void CardGrid::myDraw(sf::RenderTarget& target, sf::RenderStates states) {
-    // std::cout << "Hello World!" << std::endl;
-    for (int i = 0; i < 7; i++) {
-        // print hello world for test
 
-        for (int j = 0; j < 7; j++) {
-            // std::cout << "Hello World!" << std::endl;
-            // dominoGrid.afficher();
-            target.draw(Card(dominoGrid.getTuile(i, j), 72 * j, 72 * i));
-        }
+    for (int i = 0; i < cards.size()-8; i++) {
+        //pritn i
+        //std::cout << "i " << i << std::endl;
+        cards[i].getDomino().printBorders();
+        target.draw(cards[i]);
     }
 }
 
@@ -94,4 +89,14 @@ void CardGrid::UpdateNextCard(sf::RenderTarget& target,
     text.setFillColor(sf::Color::White);
     text.setPosition(600, 0);
     target.draw(text);
+}
+
+void CardGrid::changeDominoColor(int x, int y) {
+    Domino domino = dominoGrid.getTuileXY(x, y);
+    //get the card at the position x, y
+    for(int i = 0; i < 7; i++){
+        for(int j = 0; j < 7; j++){
+            
+        }
+    }
 }

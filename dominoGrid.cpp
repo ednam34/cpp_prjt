@@ -82,7 +82,8 @@ void DominoGrid::setGrille() {
             Domino domino(0, 1, 0);
 
             domino.setBorders(border, border, border, border);
-
+            domino.setX(i*72);
+            domino.setY(j*72);
             row.push_back(domino);
         }
         tuiles.push_back(row);
@@ -99,6 +100,18 @@ void DominoGrid::setTuiles(std::vector<Domino>& dominos) {
 }
 
 Domino DominoGrid::getTuile(int x, int y) { return tuiles[x][y]; }
+
+Domino DominoGrid::getTuileXY(int x, int y) {
+    // return the domino at the position x, y 
+    for(int i=0; i<tuiles.size();i++){
+        for(int j=0; j<tuiles[i].size();j++){
+            if(x>tuiles[i][j].getX() && x<tuiles[i][j].getX()+72 && y>tuiles[i][j].getY() && y<tuiles[i][j].getY()+72){
+                return tuiles[i][j];
+            }
+        }
+    }
+    return Domino(0,0,0);
+}
 
 bool DominoGrid::putDomino(int x, int y, Domino& domino) {
     // put a domino on the grid
@@ -131,6 +144,10 @@ bool DominoGrid::putDomino(int x, int y, Domino& domino) {
 }
 
 void DominoGrid::setTuileOnGrid(int x, int y, Domino domino) {
+    //print x and y of the tuile
+    std::cout << "x: " << tuiles[x][y].getX() << " y: " << tuiles[x][y].getY() << std::endl;    
+    domino.setX(this->tuiles[x][y].getX());
+    domino.setY(this->tuiles[x][y].getY());
     this->tuiles[x][y] = domino;
     if (x > height || y > width) {
         std::cout << "Error: out of bounds" << std::endl;
@@ -141,6 +158,8 @@ void DominoGrid::setTuileOnGrid(int x, int y, Domino domino) {
         // this->tuiles[x][y] = domino;
     }
 }
+
+
 
 void DominoGrid::afficher() {
     for (int i = 0; i < height; i++) {

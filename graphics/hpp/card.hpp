@@ -14,10 +14,14 @@ public:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     Card();
     Card(int top, int right, int bottom, int x, int y);
-    Card(Domino domino, int x, int y);
+    Card(Domino dom, int x, int y);
     //~Card();
     int CARD_SIZE = 65;
+    Domino getDomino();
 protected:
+    int x;
+    int y;
+    Domino domino;
     sf::Font font;
     sf::Text text;
     sf::RectangleShape rect;

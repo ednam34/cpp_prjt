@@ -7,19 +7,19 @@ Card::Card() {
 
     numbersN[0] = 1;
     numbersN[1] = 2;
-    numbersN[2] = 3;
+    numbersN[2] = 4;
 
     numbersS[0] = 1;
     numbersS[1] = 2;
-    numbersS[2] = 3;
+    numbersS[2] = 4;
 
     numbersE[0] = 1;
     numbersE[1] = 2;
-    numbersE[2] = 3;
+    numbersE[2] = 4;
 
     numbersW[0] = 1;
     numbersW[1] = 2;
-    numbersW[2] = 3;
+    numbersW[2] = 4;
 
     // Create the rectangle shape
     rect.setSize(sf::Vector2f(CARD_SIZE, CARD_SIZE));
@@ -58,7 +58,8 @@ Card::Card() {
 
 Card::Card(int top, int right, int bottom, int x, int y) {
     font.loadFromFile("arial.ttf");
-
+    this->x = x;
+    this->y = y;
     /*numbers[0] = top;
     numbers[1] = right;
     numbers[2] = bottom;
@@ -159,29 +160,29 @@ Card::Card(int top, int right, int bottom, int x, int y) {
         10 + x, (CARD_SIZE / 3 - textW[2].getGlobalBounds().height / 3) + y);
 }
 
-Card::Card(Domino domino, int x, int y) {
+Card::Card(Domino dom, int x, int y) {
     font.loadFromFile("arial.ttf");
+    this->domino = dom;
+    this->x = x;
+    this->y = y;
+    
+    std::cout << numbersN[0] << numbersN[1] << numbersN[2] << std::endl;
 
-    /*numbers[0] = top;
-    numbers[1] = right;
-    numbers[2] = bottom;
-    numbers[3] = left;*/
+    numbersN[0] = this->domino.getN().getA();
+    numbersN[1] = this->domino.getN().getB();
+    numbersN[2] = this->domino.getN().getC();
 
-    numbersN[0] = domino.getN().getA();
-    numbersN[1] = domino.getN().getB();
-    numbersN[2] = domino.getN().getC();
+    numbersS[0] = this->domino.getS().getA();
+    numbersS[1] = this->domino.getS().getB();
+    numbersS[2] = this->domino.getS().getC();
 
-    numbersS[0] = domino.getS().getA();
-    numbersS[1] = domino.getS().getB();
-    numbersS[2] = domino.getS().getC();
+    numbersE[0] = this->domino.getE().getA();
+    numbersE[1] = this->domino.getE().getB();
+    numbersE[2] = this->domino.getE().getC();
 
-    numbersE[0] = domino.getE().getA();
-    numbersE[1] = domino.getE().getB();
-    numbersE[2] = domino.getE().getC();
-
-    numbersW[0] = domino.getW().getA();
-    numbersW[1] = domino.getW().getB();
-    numbersW[2] = domino.getW().getC();
+    numbersW[0] = this->domino.getW().getA();
+    numbersW[1] = this->domino.getW().getB();
+    numbersW[2] = this->domino.getW().getC();
 
     // Create the rectangle shape
     rect.setSize(sf::Vector2f(CARD_SIZE, CARD_SIZE));
@@ -264,10 +265,15 @@ void Card::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(rect);
     for (int i = 0; i < 3; i++) {
         // std::cout << "Hello World!" << std::endl;
-
+        //print im here
+        
         target.draw(textN[i]);
         target.draw(textS[i]);
         target.draw(textE[i]);
         target.draw(textW[i]);
     }
+}
+
+Domino Card::getDomino() {
+    return domino;
 }

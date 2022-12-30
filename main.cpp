@@ -18,12 +18,25 @@ void test(DominoGrid& dg) {
 
     if(test == 3) {
         window.clear();
-        CardGrid grid(1, 1, dg);
+        CardGrid grid(7, 7, dg);
         while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
+            }
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                    if (event.mouseButton.button == sf::Mouse::Right)
+                    {
+                            std::cout << "the right button was pressed" << std::endl;
+                            std::cout << "mouse x: " << event.mouseButton.x << std::endl;
+                            std::cout << "mouse y: " << event.mouseButton.y << std::endl;
+                            //check if the mouse is on a card 
+                            grid.getDominoGrid().getTuileXY(event.mouseButton.x, event.mouseButton.y).printBorders();
+                            
+
+                    }
             }
         }
 
@@ -98,8 +111,9 @@ int main() {
     dg.generateBorders();
     //dg.setDominoBorders();
 
-    dg.setTuileOnGrid(4, 4, domino);
-    dg.setTuileOnGrid(4, 3, domino);
+    dg.setTuileOnGrid(5, 5, domino);
+    //dg.setTuileOnGrid(4, 3, domino);
+    //dg.setTuileOnGrid(1, 1, domino);
     dg.generateNextDomino();
     test(dg);
 }

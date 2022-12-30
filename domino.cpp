@@ -71,6 +71,7 @@ void Domino::printBorders(){
     s.afficher();
     std::cout << "ouest: ";
     w.afficher();
+    std::cout << "x " << x << " y " << y << std::endl;
 }
 
 

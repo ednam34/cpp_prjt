@@ -17,6 +17,7 @@ class DominoGrid: public Grille{
         int getWidth();
         Domino getNextDomino();
         Domino getTuile(int i, int j);
+        Domino getTuileXY(int x, int y);
         void generateBorders();
         void setDominoBorders();
         void generateNextDomino();

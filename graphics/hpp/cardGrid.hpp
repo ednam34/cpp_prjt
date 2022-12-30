@@ -12,7 +12,6 @@
 
 class CardGrid : public sf::Drawable {
    public:
-    std::vector<Card> cards;
     CardGrid();
     CardGrid(int rows, int cols, DominoGrid& dominoGrid);
     Card cardTest;
@@ -24,11 +23,13 @@ class CardGrid : public sf::Drawable {
     Card getCard(int i);
     DominoGrid getDominoGrid();
     void setCard(int i, int j, int x, int y);
+    void changeDominoColor(int x, int y);
 
    protected:
     int rows;
     int cols;
     DominoGrid dominoGrid;
+    std::vector<Card> cards;
 };
 
 #endif

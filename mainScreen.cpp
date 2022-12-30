@@ -27,9 +27,9 @@ int mainMenuFunc(sf::RenderWindow& window)
     sf::Text carcassonneText("Carcassonne", font, 24);
 
     // Set the position of the text
-    dominoText.setPosition(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 - 50));
-    traxText.setPosition(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2));
-    carcassonneText.setPosition(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 50));
+    dominoText.setPosition(sf::Vector2f(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2 - 50));
+    traxText.setPosition(sf::Vector2f(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2));
+    carcassonneText.setPosition(sf::Vector2f(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2 + 50));
 
     // Set up the initial selected menu option
     MenuOption selectedOption = DOMINO;
