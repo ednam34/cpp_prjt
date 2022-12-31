@@ -6,15 +6,9 @@ const int WINDOW_WIDTH = 700;
 const int WINDOW_HEIGHT = 500;
 
 // Enum to represent the different menu options
-enum MenuOption {
-    DOMINO,
-    TRAX,
-    CARCASSONNE
-};
+enum MenuOption { DOMINO, TRAX, CARCASSONNE };
 
-int mainMenuFunc(sf::RenderWindow& window)
-{
-
+int mainMenuFunc(sf::RenderWindow& window) {
     // Set up the font and text for the menu options
     sf::Font font;
     if (!font.loadFromFile("arial.ttf")) {
@@ -27,9 +21,11 @@ int mainMenuFunc(sf::RenderWindow& window)
     sf::Text carcassonneText("Carcassonne", font, 24);
 
     // Set the position of the text
-    dominoText.setPosition(sf::Vector2f(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2 - 50));
+    dominoText.setPosition(
+        sf::Vector2f(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2 - 50));
     traxText.setPosition(sf::Vector2f(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2));
-    carcassonneText.setPosition(sf::Vector2f(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2 + 50));
+    carcassonneText.setPosition(
+        sf::Vector2f(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2 + 50));
 
     // Set up the initial selected menu option
     MenuOption selectedOption = DOMINO;
@@ -42,8 +38,7 @@ int mainMenuFunc(sf::RenderWindow& window)
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
-            }
-            else if (event.type == sf::Event::KeyPressed) {
+            } else if (event.type == sf::Event::KeyPressed) {
                 // Check if the up or down arrow keys were pressed
                 if (event.key.code == sf::Keyboard::Up) {
                     // Change the selected option
@@ -58,8 +53,7 @@ int mainMenuFunc(sf::RenderWindow& window)
                             selectedOption = TRAX;
                             break;
                     }
-                }
-                else if (event.key.code == sf::Keyboard::Down) {
+                } else if (event.key.code == sf::Keyboard::Down) {
                     // Change the selected option
                     switch (selectedOption) {
                         case DOMINO:
@@ -72,15 +66,15 @@ int mainMenuFunc(sf::RenderWindow& window)
                             selectedOption = DOMINO;
                             break;
                     }
-                }
-                else if (event.key.code == sf::Keyboard::Return) {
+                } else if (event.key.code == sf::Keyboard::Return) {
                     // The user has selected a menu option
                     switch (selectedOption) {
                         case DOMINO:
-                            return 3;
+                            // return 3;
                             break;
                         case TRAX:
                             // Start the trax game
+                            return 1;
                             break;
                         case CARCASSONNE:
                             // Start the carcassonne game
@@ -103,15 +97,13 @@ int mainMenuFunc(sf::RenderWindow& window)
                     carcassonneText.setFillColor(sf::Color::Red);
                     break;
             }
-            //draw the menu
+            // draw the menu
             window.clear();
             window.draw(dominoText);
             window.draw(traxText);
             window.draw(carcassonneText);
             window.display();
-            
         }
     }
     return 0;
 }
-
