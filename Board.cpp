@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <queue>
 #include <random>
 
 const int WINDOW_WIDTH = 800;
@@ -71,7 +72,7 @@ class Board {
         rng.seed(std::random_device{}());
     }
 
-    void render(sf::RenderWindow& window) {
+    void render(sf::RenderWindow &window) {
         // update colorSprite texture
         colorSprite.setTexture(textures[tileNext.index]);
         // Render all tiles
@@ -113,6 +114,87 @@ class Board {
         }
         return true;
     }
+
+    // Create a function TileToMatrix that will take a tile and return the
+    // matrix of it as a 2D array of int
+    int **TileToMatrix(Tile tile) {
+        // For example for an empty tile it will return a 2D array of
+        // {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}}
+        // For a tile with index 1 it will return a 2D array of
+        // {{-1,1,-1},{2,0,2},{-1,1,-1}} For a tile with index 2 it will return
+        // a 2D array of {{-1,2,-1},{1,0,1},{-1,2,-1}} For a tile with index 3
+        // it will return a 2D array of {{-1,1,-1},{1,0,2},{-1,2,-1}} For a tile
+        // with index 4 it will return a 2D array of
+        // {{-1,1,-1},{2,0,1},{-1,2,-1}} For a tile with index 5 it will return
+        // a 2D array of {{-1,2,-1},{2,0,1},{-1,1,-1}} For a tile with index 6
+        // it will return a 2D array of {{-1,2,-1},{1,0,2},{-1,1,-1}}
+        int **matrix = new int *[3];
+        for (int i = 0; i < 3; i++) {
+            matrix[i] = new int[3];
+        }
+        // initialize the matrix to 3
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                matrix[i][j] = 9;
+            }
+        }
+        // initialize the matrix to the correct values
+
+        // if tile not empty add at the center of the matrix the value 0
+
+        if (tile.state != TileState::Empty) {
+            matrix[0][1] = tile.tileDetails.BorderTop;
+            matrix[1][0] = tile.tileDetails.BorderLeft;
+            matrix[1][2] = tile.tileDetails.BorderRight;
+            matrix[2][1] = tile.tileDetails.BorderBot;
+            matrix[1][1] = 3;
+        }
+        // Print the matrix
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                std::cout << matrix[i][j] << " ";
+            }
+            std::cout << std::endl;
+        }
+
+        return matrix;
+    }
+
+    int **Board2Matrix() {
+        // Create a 2D array of int that will contain the whole board
+        int **matrix = new int *[BOARD_HEIGHT * 3];
+        for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
+            matrix[i] = new int[BOARD_WIDTH * 3];
+        }
+        // initialize the matrix to -1
+        for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
+            for (int j = 0; j < BOARD_WIDTH * 3; j++) {
+                matrix[i][j] = 9;
+            }
+        }
+        // initialize the matrix to the correct values
+        for (int y = 0; y < BOARD_HEIGHT; y++) {
+            for (int x = 0; x < BOARD_WIDTH; x++) {
+                int **tileMatrix = TileToMatrix(tiles[y][x]);
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        matrix[y * 3 + i][x * 3 + j] = tileMatrix[i][j];
+                    }
+                }
+            }
+        }
+        // Print the matrix
+        for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
+            for (int j = 0; j < BOARD_WIDTH * 3; j++) {
+                std::cout << matrix[i][j] << " ";
+            }
+            std::cout << std::endl;
+        }
+        return matrix;
+    }
+
+    // Create a function who checks if it's possible to go from an extremity of
+    // a matrix to another extremity with only 1 and 3 in the matrix
 
     bool checkAdjacentTile(int x, int y, Tile player) {
         if (isBoardEmpty()) {
@@ -235,6 +317,7 @@ class Board {
             tileNext.tileDetails.BorderRight = tilesDetails[1].BorderRight;
             tileNext.tileDetails.texture = textures[1];
             tileNext.index = 1;
+            int **a = Board2Matrix();
             return true;
 
         } else {
