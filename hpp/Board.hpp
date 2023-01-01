@@ -33,6 +33,7 @@ class Board {
     Board();
     void render(sf::RenderWindow& window);
     bool placeTile(int x, int y, TileState player);
+    bool isBoardEmpty();
 
    private:
     Tile tiles[6][8];

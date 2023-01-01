@@ -103,9 +103,23 @@ class Board {
         }
         window.draw(colorSprite);
     }
+    bool isBoardEmpty() {
+        for (int y = 0; y < BOARD_HEIGHT; y++) {
+            for (int x = 0; x < BOARD_WIDTH; x++) {
+                if (tiles[y][x].state != TileState::Empty) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     bool checkAdjacentTile(int x, int y, Tile player) {
+        if (isBoardEmpty()) {
+            return true;
+        }
         int adjacentTiles = 0;
+        int NextTo = 0;
         // print the tile details
         // std::cout << "BorderTop: " << tiles[y][x - 1].tileDetails.BorderTop
         //<< std::endl;
@@ -139,6 +153,9 @@ class Board {
              tileNext.tileDetails.BorderLeft ==
                  tiles[y][x - 1].tileDetails.BorderRight) ||
             (x > 0 && tiles[y][x - 1].state == TileState::Empty) || (x == 0)) {
+            if (tiles[y][x - 1].state != TileState::Empty && x != 0) {
+                NextTo++;
+            }
             // print premier argument passé
             std::cout << "1er OK" << std::endl;
             adjacentTiles++;
@@ -149,6 +166,10 @@ class Board {
             (x < BOARD_WIDTH - 1 &&
              tiles[y][x + 1].state == TileState::Empty) ||
             (x == BOARD_WIDTH - 1)) {
+            if (x != BOARD_WIDTH - 1 &&
+                tiles[y][x + 1].state != TileState::Empty) {
+                NextTo++;
+            }
             // print deuxieme argument passé
             std::cout << "2eme OK" << std::endl;
             adjacentTiles++;
@@ -157,6 +178,9 @@ class Board {
              tileNext.tileDetails.BorderTop ==
                  tiles[y - 1][x].tileDetails.BorderBot) ||
             (y > 0 && tiles[y - 1][x].state == TileState::Empty) || (y == 0)) {
+            if (tiles[y - 1][x].state != TileState::Empty && y != 0) {
+                NextTo++;
+            }
             // print troisieme argument passé
             std::cout << "3eme OK" << std::endl;
             adjacentTiles++;
@@ -168,11 +192,16 @@ class Board {
             (y < BOARD_HEIGHT - 1 &&
              tiles[y + 1][x].state == TileState::Empty) ||
             (y == BOARD_HEIGHT - 1)) {
+            if (y != BOARD_HEIGHT - 1 &&
+                tiles[y + 1][x].state != TileState::Empty) {
+                NextTo++;
+            }
             // print quatrieme argument passé
             std::cout << "4eme OK" << std::endl;
             adjacentTiles++;
         }
-        if (adjacentTiles == 4) {
+        std::cout << "NexTO: " << NextTo << std::endl;
+        if (adjacentTiles == 4 && NextTo > 0) {
             return true;
         } else {
             return false;
