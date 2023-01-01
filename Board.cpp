@@ -42,8 +42,7 @@ class Board {
     std::array<TilesDetails, 7> tilesDetails;
 
     Board() {
-        tileNext = {-1, -1, TileState::Empty, textures[0], 1, tilesDetails[0]};
-
+        tileNext = {-1, -1, TileState::Empty, textures[1], 1, tilesDetails[1]};
         textures[0].loadFromFile("textures/0.png");
         textures[1].loadFromFile("textures/1.png");
         textures[2].loadFromFile("textures/2.png");
@@ -366,7 +365,7 @@ int main() {
 
     // Initialize the current player to player 1
     TileState currentPlayer = TileState::Player1;
-
+    board.rotateTile();
     // Run the game loop
     while (window.isOpen()) {
         sf::Event event;
