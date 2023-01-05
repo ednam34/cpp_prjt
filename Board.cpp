@@ -3,8 +3,8 @@
 #include <queue>
 #include <random>
 
-const int WINDOW_WIDTH = 800;
-const int WINDOW_HEIGHT = 600;
+const int WINDOW_WIDTH = 700;
+const int WINDOW_HEIGHT = 500;
 const int TILE_SIZE = 50;
 const int BOARD_WIDTH = 8;
 const int BOARD_HEIGHT = 6;
@@ -151,9 +151,9 @@ class Board {
         // Print the matrix
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                std::cout << matrix[i][j] << " ";
+                // std::cout << matrix[i][j] << " ";
             }
-            std::cout << std::endl;
+            // std::cout << std::endl;
         }
 
         return matrix;
@@ -185,15 +185,76 @@ class Board {
         // Print the matrix
         for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
             for (int j = 0; j < BOARD_WIDTH * 3; j++) {
-                std::cout << matrix[i][j] << " ";
+                // std::cout << matrix[i][j] << " ";
             }
-            std::cout << std::endl;
+            // std::cout << std::endl;
         }
         return matrix;
     }
 
-    // Create a function who checks if it's possible to go from an extremity of
-    // a matrix to another extremity with only 1 and 3 in the matrix
+    // Create a function who checks if it's possible to go from an extremity
+    // from x = 0 to x = 5 while only going through the tiles with value 1 or 3
+    // and not going through the tiles with value 2
+    bool checkPath(int x, int y, Tile player) {
+        // Create a 2D array of int that will contain the whole board
+        int **matrix = Board2Matrix();
+        // Create a 2D array of bool that will contain the visited tiles
+        bool **visited = new bool *[BOARD_HEIGHT * 3];
+        for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
+            visited[i] = new bool[BOARD_WIDTH * 3];
+        }
+        // initialize the matrix to false
+        for (int i = 0; i < BOARD_HEIGHT * 3; i++) {
+            for (int j = 0; j < BOARD_WIDTH * 3; j++) {
+                visited[i][j] = false;
+            }
+        }
+        // Create a queue of pair of int
+        std::queue<std::pair<int, int>> q;
+        // Add the starting point to the queue
+        q.push(std::make_pair(x, y));
+        // While the queue is not empty
+        while (!q.empty()) {
+            // Get the first element of the queue
+            std::pair<int, int> current = q.front();
+            // Remove the first element of the queue
+            q.pop();
+            // If the current element is not visited
+            if (!visited[current.first][current.second]) {
+                // Mark the current element as visited
+                visited[current.first][current.second] = true;
+                // If the current element is a 1 or a 3
+                if (matrix[current.first][current.second] == 1 ||
+                    matrix[current.first][current.second] == 3) {
+                    // If the current element is on the right border
+                    if (current.second == BOARD_WIDTH * 3 - 1) {
+                        // Return true
+                        std::cout << "GAGNé" << std::endl;
+
+                        return true;
+                    }
+                    // Add the element on the right of the current element to
+                    // the queue
+                    q.push(std::make_pair(current.first, current.second + 1));
+                }
+                // If the current element is a 2 or a 3
+                if (matrix[current.first][current.second] == 2 ||
+                    matrix[current.first][current.second] == 3) {
+                    // If the current element is on the bottom border
+                    if (current.first == BOARD_HEIGHT * 3 - 1) {
+                        // Return true
+                        std::cout << "GAGNé" << std::endl;
+                        return true;
+                    }
+                    // Add the element on the bottom of the current element to
+                    // the queue
+                    q.push(std::make_pair(current.first + 1, current.second));
+                }
+            }
+        }
+        // Return false
+        return false;
+    }
 
     bool checkAdjacentTile(int x, int y, Tile player) {
         if (isBoardEmpty()) {
@@ -317,6 +378,19 @@ class Board {
             tileNext.tileDetails.texture = textures[1];
             tileNext.index = 1;
             int **a = Board2Matrix();
+            // print check path for all x and y = 0
+            for (int i = 0; i < BOARD_HEIGHT; i++) {
+                for (int j = 0; j < BOARD_WIDTH; j++) {
+                    if (a[i][j] == 1) {
+                        std::cout << "x: " << j << std::endl;
+                        std::cout << "y: " << i << std::endl;
+                        std::cout
+                            << "check path: " << checkPath(j, i, tiles[i][j])
+                            << std::endl;
+                    }
+                }
+            }
+
             return true;
 
         } else {
@@ -368,6 +442,7 @@ int main() {
     board.rotateTile();
     // Run the game loop
     while (window.isOpen()) {
+        // print checkpath()
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
